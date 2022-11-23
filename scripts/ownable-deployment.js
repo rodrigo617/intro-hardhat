@@ -10,12 +10,14 @@ async function main() {
 
   const [signer] = await hre.ethers.getSigners();
 
-  const Ownable = await hre.ethers.getContractFactory("Owner");
+  const Ownable = await hre.ethers.getContractFactory("Ownable");
   const ownable = await Ownable.deploy(signer.address);
 
   await ownable.deployed();
 
   console.log("Ownable deployed to:", ownable.address);
+  const foo = await ownable.owner();
+  console.log("este es el owner:", foo);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
